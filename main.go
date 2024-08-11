@@ -7,6 +7,7 @@ import (
 )
 
 func main() {
-	fmt.Printf("Hex To Base64: %v", converter.HexToBase64("49276d206b696c6c696e6720796f757220627261696e206c696b65206120706f69736f6e6f7573206d757368726f6f6d"))
-	converter.FixedXor("1c0111001f010100061a024b53535009181c")
+	expected := []byte("Cooking MC's like a pound of bacon")
+	val, _ := converter.SingleByteXorCipher("1b37373331363f78151b7f2b783431333d78397828372d363c78373e783a393b3736")
+	fmt.Print(val, expected)
 }
