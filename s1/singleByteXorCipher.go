@@ -1,4 +1,4 @@
-package converter
+package s1
 
 import (
 	"encoding/hex"
@@ -44,10 +44,10 @@ func singleXOR(buffer []byte, key byte) []byte {
 	return ans
 }
 
-func SingleByteXorCipher(hexCode string) ([]byte, error, float64) {
+func SingleByteXorCipher(hexCode string) ([]byte, float64, error) {
 	hexDecoded, err := hex.DecodeString(hexCode)
 	if err != nil {
-		return nil, err, 0.00
+		return nil, 0.00, err
 	}
 	bestKey := byte(0)
 	bestScore := 0.00
@@ -60,7 +60,7 @@ func SingleByteXorCipher(hexCode string) ([]byte, error, float64) {
 			bestScore = score
 		}
 	}
-	return singleXOR(hexDecoded, bestKey), nil, bestScore
+	return singleXOR(hexDecoded, bestKey), bestScore, nil
 }
 
 var reff = regexp.MustCompile("^[a-zA-Z ]$")

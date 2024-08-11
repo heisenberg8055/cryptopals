@@ -1,4 +1,4 @@
-package converter
+package s1
 
 import (
 	"testing"

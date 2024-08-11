@@ -1,4 +1,4 @@
-package converter
+package s1
 
 import (
 	"bufio"
@@ -9,7 +9,7 @@ import (
 func DetectSingleCharacterXOR() string {
 	maxScore := 0.00
 	var encrypted = make([]byte, 0)
-	file, err := os.Open("/home/heisenberg/Documents/gooo/cryptopals/converter/4.txt")
+	file, err := os.Open("/home/heisenberg/Documents/gooo/cryptopals/s1/4.txt")
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -17,7 +17,7 @@ func DetectSingleCharacterXOR() string {
 	scanner := bufio.NewScanner(file)
 	for scanner.Scan() {
 		hexEncoded := scanner.Text()
-		decrypted, _, score := SingleByteXorCipher(hexEncoded)
+		decrypted, score, _ := SingleByteXorCipher(hexEncoded)
 		if score > maxScore {
 			maxScore = score
 			encrypted = decrypted
