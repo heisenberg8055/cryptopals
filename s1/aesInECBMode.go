@@ -39,3 +39,35 @@ func DecryptECB(encoded, key []byte) ([]byte, error) {
 	}
 	return decoded, nil
 }
+
+func EncryptAESWithECBMode(plaintext []byte, key []byte) ([]byte, error) {
+	block, err := aes.NewCipher(key)
+	if err != nil {
+		return nil, err
+	}
+
+	ciphertext := make([]byte, len(plaintext))
+	blockSize := len(key)
+
+	for start, end := 0, blockSize; start < len(plaintext); start, end = start+blockSize, end+blockSize {
+		block.Encrypt(ciphertext[start:end], plaintext[start:end])
+	}
+
+	return ciphertext, nil
+}
+
+func DecryptAESWithECBMode(ciphertext []byte, key []byte) ([]byte, error) {
+	block, err := aes.NewCipher(key)
+	if err != nil {
+		return nil, err
+	}
+
+	plaintext := make([]byte, len(ciphertext))
+	blockSize := len(key)
+
+	for start, end := 0, blockSize; start < len(ciphertext); start, end = start+blockSize, end+blockSize {
+		block.Decrypt(plaintext[start:end], ciphertext[start:end])
+	}
+
+	return plaintext, nil
+}
