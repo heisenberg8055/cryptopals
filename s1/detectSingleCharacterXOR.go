@@ -9,7 +9,7 @@ import (
 func DetectSingleCharacterXOR() string {
 	maxScore := 0.00
 	var encrypted = make([]byte, 0)
-	file, err := os.Open("/home/heisenberg/Documents/gooo/cryptopals/s1/4.txt")
+	file, err := os.Open(".s1/4.txt")
 	if err != nil {
 		log.Fatal(err)
 	}
